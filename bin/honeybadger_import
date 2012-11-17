@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+$:.unshift File.expand_path("../../lib/", __FILE__)
+require "honeybadger_import"
+raise RuntimeError.new("You must specify your AIRBRAKE_ACCOUNT, e.g., 'AIRBRAKE_ACCOUNT=myaccount AIRBRAKE_AUTH_TOKEN=abcde HONEYBADGER_API_KEY=1fdsg honeybadger_import'") unless ENV["AIRBRAKE_ACCOUNT"]
+raise RuntimeError.new("You must specify your AIRBRAKE_AUTH_TOKEN, e.g., 'AIRBRAKE_ACCOUNT=myaccount AIRBRAKE_AUTH_TOKEN=abcde HONEYBADGER_API_KEY=1fdsg honeybadger_import'") unless ENV["AIRBRAKE_AUTH_TOKEN"]
+raise RuntimeError.new("You must specify your HONEYBADGER_API_KEY, e.g., 'AIRBRAKE_ACCOUNT=myaccount AIRBRAKE_AUTH_TOKEN=abcde HONEYBADGER_API_KEY=1fdsg honeybadger_import'") unless ENV["HONEYBADGER_API_KEY"]
+HoneybadgerImport.migrate(ENV["AIRBRAKE_ACCOUNT"], ENV["AIRBRAKE_AUTH_TOKEN"], ENV["HONEYBADGER_API_KEY"])
